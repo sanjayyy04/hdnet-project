@@ -1,0 +1,187 @@
+.active {
+    background-color: red;
+    color: white;
+}
+
+/* ---------- Section 1 (Color Boxes) ---------- */
+.color-filer ul,
+.card-filer ul,
+.img-filer ul {
+    list-style: none;
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.color-filer ul li,
+.card-filer ul li,
+.img-filer ul li {
+    display: block;
+    padding: 10px 20px;
+    border: 2px solid red;
+    cursor: pointer;
+}
+
+.container {
+    margin: 10px;
+    padding: 5rem 4rem;
+    /* REMOVE flex here so Isotope controls layout */
+}
+
+.items {
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.black {
+    background-color: black;
+}
+
+.pink {
+    background-color: pink;
+}
+
+/* ---------- Section 2 (Cards) ---------- */
+.card-container,
+.masonry-container {
+    /* REMOVE flex here too */
+    margin: 20px 0;
+    padding: 2rem 2rem;
+}
+
+.card,
+.masonry-item {
+    margin: 10px;
+    width: 30%;
+    /* 5 cards per row (you can change to 25% for 4 per row) */
+    position: relative;
+    display: inline-block;
+    /* border-radius: 12px; */
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* transition: transform 0.3s ease; */
+    /* vertical-align: top; */
+}
+
+.card:hover,
+.masonry-item:hover {
+    transform: scale(1.05);
+}
+
+.card img,
+.masonry-item img {
+    display: block;
+    width: 100%;
+    /* responsive */
+    height: auto;
+    /* keep natural height */
+    /* border-radius: 12px; */
+}
+
+/* ---------- Overlay ---------- */
+.overlay,
+.overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    padding: 15px;
+    text-align: center;
+}
+
+.card:hover .overlay,
+.masonry-item:hover .overlay1 {
+    opacity: 1;
+}
+
+.overlay h3,
+.overlay1 h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.overlay p,
+.overlay1 p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.overlay button,
+.overlay1 button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #ff0000;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+@media(max-width: 1025px) {
+
+    .card,
+    .masonry-item {
+        width: 44%;
+    }
+}
+
+@media(max-width: 768px) {
+    /* .container {
+        padding: 5rem 8rem;
+    } */
+
+    .card-container,
+    .masonry-container {
+        margin: 20px 0;
+        padding: 2rem 0rem;
+    }
+
+    .card,
+    .masonry-item {
+        width: 44%;
+    }
+}
+
+@media(max-width: 450px) {
+
+    .card-container,
+    .masonry-container {
+        margin: 20px 0;
+        padding: 2rem 1rem;
+    }
+
+    .card,
+    .masonry-item {
+        width: 86%;
+    }
+
+    .container {
+        padding: 5rem 4rem;
+    }
+}
