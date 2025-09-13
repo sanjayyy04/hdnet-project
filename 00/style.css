@@ -4,7 +4,7 @@
     --dark-blue-color: rgb(7, 7, 70);
     --font-size-medium: clamp(20px, 5vw, 20px);
     --font-size-small: clamp(18px, 5vw, 18px);
-    --font-size: clamp(1.5rem, 5vw, 4rem);
+    --font-size: clamp(2.5rem, 5vw, 4rem);
     --font-weight: lighter;
     --padding: 60px 20px;
     --margin: ;
@@ -349,11 +349,15 @@ p {
     color: white;
 }
 
+.hero-section-btn,
+.typo3-section-btn {
+    display: flex;
+    gap: 40px;
+}
 
 .hero-section-btn button,
 .typo3-section-btn button {
     cursor: pointer;
-    margin-right: 2rem;
     padding: 10px 30px;
     font-size: 17px;
     position: relative;
@@ -482,9 +486,13 @@ p {
     flex-wrap: wrap;
 }
 
+.container4 p:first-child {
+    font-size: var(--font-size-medium);
+    margin-bottom: -2%;
+}
+
 .container4 p {
     font-size: var(--font-size-small);
-    margin-top: 2%;
 }
 
 .container4 h1 {
@@ -514,6 +522,7 @@ p {
 .hex-list li {
     position: relative;
     padding-left: 40px;
+    padding-top: 3px;
     padding-bottom: 10px;
     font-size: var(--font-size-small);
 }
@@ -609,7 +618,8 @@ footer {
 .footer-links ul li a {
     text-decoration: none;
     color: #ffffff;
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight);
     position: relative;
     padding: 5px 0;
 }
@@ -782,6 +792,7 @@ input[type="checkbox"]:checked::before {
     font-size: var(--font-size);
     font-weight: var(--font-weight);
     margin-top: -10px;
+    margin-bottom: 6%;
     position: relative;
 }
 
@@ -795,9 +806,12 @@ input[type="checkbox"]:checked::before {
     left: 0;
 }
 
+.text-media-content p:first-child {
+    font-size: var(--font-size-medium);
+}
+
 .text-media-content p {
-    font-size: 20px;
-    margin-top: 40px;
+    font-size: var(--font-size-small);
 }
 
 .text-media-img img {
@@ -850,7 +864,7 @@ input[type="checkbox"]:checked::before {
 }
 
 .services-left p {
-    font-size: 25px;
+    font-size: var(--font-size-medium);
     margin-bottom: -2px;
 }
 
@@ -949,6 +963,7 @@ input[type="checkbox"]:checked::before {
         padding: 5% 5%
     }
 
+
     .hex-grid-text {
         padding: 25% 4%;
         max-width: 48%;
@@ -1004,7 +1019,7 @@ input[type="checkbox"]:checked::before {
     .text-media-container {
         display: flex;
         justify-content: center;
-        /* padding: 40px 32px; */
+        padding: 40px 5%;
     }
 
     /* tabs section */
@@ -1166,7 +1181,7 @@ input[type="checkbox"]:checked::before {
     }
 
     .back-btn {
-        display: block;
+        display: block !important;
         bottom: 15%;
         right: 15%;
     }
@@ -1231,12 +1246,12 @@ input[type="checkbox"]:checked::before {
 
     .newsletter input[type="email"] {
         width: 100%;
-        margin-bottom: 0.5rem;
     }
 
+    /* 
     .newsletter button {
-        width: 14%;
-    }
+        width: 9%;
+    } */
 
     .footer-right {
         margin-top: 2rem;
@@ -1258,7 +1273,18 @@ input[type="checkbox"]:checked::before {
 
     /* tabs section */
     .service-content-ul2 {
-        top: calc(100vh - 69vh);
+        /* top: calc(100vh - 69vh); */
+    }
+}
+
+/* Desktop / laptop: show dropdown on hover */
+@media (min-width: 900px) {
+    .dropdown:hover .firstlink {
+        display: block;
+    }
+
+    .back-btn {
+        display: none !important;
     }
 }
 
@@ -1287,7 +1313,7 @@ input[type="checkbox"]:checked::before {
 
     .back-btn {
         display: block;
-        bottom: 1rem;
+        bottom: 11vh;
         right: 2rem;
     }
 
@@ -1375,6 +1401,10 @@ input[type="checkbox"]:checked::before {
         padding: 3rem 1.5rem;
     }
 
+    .newsletter input[type="checkbox"] {
+        width: 1.5rem;
+    }
+
     /* text media */
     .text-media-container {
         flex-direction: column;
@@ -1398,6 +1428,17 @@ input[type="checkbox"]:checked::before {
     /* tabs section */
     .services-text {
         flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* services */
+    .services-content {
+        margin-top: 0px;
+        padding: 0rem 6%;
+    }
+
+    .services-left h2::after {
+        left: 10%;
     }
 
     .hexagon-img {
