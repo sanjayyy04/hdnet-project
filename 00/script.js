@@ -45,18 +45,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    // open mobile nav
     menu.addEventListener("click", () => {
-
         nav.style.left = "0%";
         close.style.display = "block";
         menu.style.display = "none";
     });
 
+    // close mobile nav
     close.addEventListener("click", () => {
         nav.style.left = "100%";
         close.style.display = "none";
         menu.style.display = "block";
+
+        // reset all open firstlinks
+        document.querySelectorAll(".firstlink").forEach(fl => fl.classList.remove("active"));
+        document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
     });
+
+    // mobile click to open firstlink
+    dropdowns.forEach(drop => {
+        const dropItem = drop.querySelector(".drop-item");
+        const firstLink = drop.querySelector(".firstlink");
+
+        dropItem.addEventListener("click", e => {
+            // only intercept click on mobile / tablet
+            if (window.innerWidth < 900) {
+                e.preventDefault();
+                // close any other open panels
+                document.querySelectorAll(".firstlink").forEach(fl => fl.classList.remove("active"));
+                document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
+
+                // open this one
+                firstLink.classList.add("active");
+                dropItem.classList.add("active-btn");
+            }
+        });
+    });
+
+    // back buttons to close firstlink on mobile
+    backButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (window.innerWidth < 900) {
+                const parentFirstLink = btn.closest(".firstlink");
+                parentFirstLink.classList.remove("active");
+                document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
+            }
+        });
+    });
+
 
 
     menuLinks.forEach(link => {
@@ -95,32 +132,32 @@ document.addEventListener("DOMContentLoaded", () => {
         firstArrow.style.backgroundColor = "red";
     }
 
-    dropdowns.forEach(drop => {
-        const dropItem = drop.querySelector(".drop-item");
-        const firstLink = drop.querySelector(".firstlink");
+    // dropdowns.forEach(drop => {
+    //     const dropItem = drop.querySelector(".drop-item");
+    //     const firstLink = drop.querySelector(".firstlink");
 
-        dropItem.addEventListener("click", () => {
-            // Remove active from all firstlinks
-            document.querySelectorAll(".firstlink").forEach(fl => fl.classList.remove("active"));
+    //     dropItem.addEventListener("click", () => {
+    //         // Remove active from all firstlinks
+    //         document.querySelectorAll(".firstlink").forEach(fl => fl.classList.remove("active"));
 
-            // Remove active-btn from all nav links
-            document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
+    //         // Remove active-btn from all nav links
+    //         document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
 
-            // Add active state to this one
-            firstLink.classList.add("active");
-            dropItem.classList.add("active-btn");
-        });
-    });
+    //         // Add active state to this one
+    //         firstLink.classList.add("active");
+    //         dropItem.classList.add("active-btn");
+    //     });
+    // });
 
-    backButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const parentFirstLink = btn.closest(".firstlink");
-            parentFirstLink.classList.remove("active");
+    // backButtons.forEach(btn => {
+    //     btn.addEventListener("click", () => {
+    //         const parentFirstLink = btn.closest(".firstlink");
+    //         parentFirstLink.classList.remove("active");
 
-            // Remove active-btn when going back
-            document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
-        });
-    });
+    //         // Remove active-btn when going back
+    //         document.querySelectorAll(".drop-item").forEach(item => item.classList.remove("active-btn"));
+    //     });
+    // });
 
 
     // LazyLoad for all .lazy images
