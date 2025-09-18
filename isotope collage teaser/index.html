@@ -55,7 +55,7 @@
                 <div class="overlay">
                     <h3>Image Title</h3>
                     <p>Some description about the image goes here.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                 <div class="overlay">
                     <h3>Another Title</h3>
                     <p>Details about this card image.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <div class="overlay">
                     <h3>Another Title</h3>
                     <p>Details about this card image.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 <div class="overlay">
                     <h3>Another Title</h3>
                     <p>Details about this card image.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
             <div class="card item4">
@@ -90,7 +90,7 @@
                 <div class="overlay">
                     <h3>Image Title</h3>
                     <p>Some description about the image goes here.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                 <div class="overlay">
                     <h3>Another Title</h3>
                     <p>Details about this card image.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
                 <div class="overlay">
                     <h3>Another Title</h3>
                     <p>Details about this card image.</p>
-                    <button>View More</button>
+                    <button>Open</button>
                 </div>
             </div>
         </div>
@@ -127,80 +127,86 @@
     
         <div class="masonry-container">
             <div class="masonry-item development">
-                <img src="assets/teaser1.jpg" alt="">
+                <img src="assets/teaser1.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item development">
-                <img src="assets/teasure2.jpg" alt="">
+                <img src="assets/teasure2.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item operations">
-                <img src="assets/teasure3.jpg" alt="">
+                <img src="assets/teasure3.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item operations">
-                <img src="assets/teaser1.jpg" alt="">
+                <img src="assets/teaser1.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item marketing">
-                <img src="assets/teasure2.jpg" alt="">
+                <img src="assets/teasure2.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item scrum">
-                <img src="assets/teasure3.jpg" alt="">
+                <img src="assets/teasure3.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item scrum">
-                <img src="assets/teaser1.jpg" alt="">
+                <img src="assets/teaser1.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
             <div class="masonry-item">
-                <img src="assets/teasure2.jpg" alt="">
+                <img src="assets/teasure2.jpg" alt="Demo Image">
                 <div class="overlay1">
                     <h1>Lorem ipsum dolor.</h1>
                     <p>Lorem, ipsum dolor.</p>
-                    <button class="btn">continue</button>
+                    <button class="btn">Open</button>
                 </div>
             </div>
     
         </div>
     </section>
 
+<!-- === Image Modal (paste just above your scripts) === -->
+<div id="imageModal" class="modal" aria-hidden="true">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <img id="modalImage" class="modal-image" src="" alt="Demo Image">
+    <div id="modalCaption" class="modal-caption"></div>
+</div>
 
 
     <!-- ========= Scripts ========= -->
@@ -259,6 +265,59 @@
                     iso.arrange({ filter: filterValue, layoutMode: 'masonry' });
                 });
             });
+
+            // ===== Modal image viewer (append after your existing isotope code) =====
+                (function () {
+                    const modal = document.getElementById('imageModal');
+                    if (!modal) return; // safety
+
+                    const modalImage = document.getElementById('modalImage');
+                    const modalCaption = document.getElementById('modalCaption');
+                    const closeBtn = modal.querySelector('.modal-close');
+
+                    // Select buttons that should open the modal:
+                    // - .overlay button (cards)
+                    // - .overlay1 .btn      (masonry items)
+                    const viewButtons = document.querySelectorAll('.overlay button, .overlay1 .btn');
+
+                    viewButtons.forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            // find the closest container that holds an <img>
+                            const card = this.closest('.card, .masonry-item');
+                            if (!card) return;
+                            const img = card.querySelector('img');
+                            if (!img) return;
+
+                            // If you use lazy-loading with data-src, use:
+                            // const src = img.getAttribute('data-src') || img.src;
+                            const src = img.src;
+
+                            modalImage.src = src;
+                            modalImage.alt = img.alt || '';
+                            modalCaption.textContent = img.alt || '';
+                            modal.classList.add('open');
+                            modal.setAttribute('aria-hidden', 'false');
+                        });
+                    });
+
+                    function closeModal() {
+                        modal.classList.remove('open');
+                        modal.setAttribute('aria-hidden', 'true');
+                        // clear src to free memory and avoid previous image flashing
+                        modalImage.src = '';
+                        modalCaption.textContent = '';
+                    }
+
+                    // close handlers
+                    closeBtn.addEventListener('click', closeModal);
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === modal) closeModal(); // click on backdrop closes modal
+                    });
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'Escape') closeModal(); // ESC closes modal
+                    });
+                })();
+
     </script>
 
 </body>
